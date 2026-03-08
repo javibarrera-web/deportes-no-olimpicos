@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deportes No Olímpicos</title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #07111f, #0e223d 30%, #f2f6fb 30%, #eef3f8 100%);
+      color:#1d2a35;
+      line-height:1.6;
+    }
+
+    header{
+      min-height: 90vh;
+      background:
+        linear-gradient(rgba(3,12,24,0.65), rgba(3,12,24,0.75)),
+        url('https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:40px 20px;
+      position:relative;
+    }
+
+    .hero{
+      max-width:900px;
+      background: rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.15);
+      backdrop-filter: blur(6px);
+      padding:40px;
+      border-radius:24px;
+      box-shadow:0 20px 50px rgba(0,0,0,0.3);
+    }
+
+    .hero h1{
+      font-size:3rem;
+      margin-bottom:15px;
+      letter-spacing:1px;
+    }
+
+    .hero p{
+      font-size:1.1rem;
+      max-width:750px;
+      margin:0 auto 20px auto;
+    }
+
+    .hero .btn{
+      display:inline-block;
+      margin-top:10px;
+      padding:14px 24px;
+      background:#00c2ff;
+      color:#08203c;
+      text-decoration:none;
+      font-weight:bold;
+      border-radius:999px;
+      transition:0.3s;
+    }
+
+    .hero .btn:hover{
+      transform:translateY(-2px);
+      background:#7fe2ff;
+    }
+
+    nav{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:#061526;
+      padding:14px 10px;
+      text-align:center;
+      box-shadow:0 4px 14px rgba(0,0,0,0.25);
+    }
+
+    nav a{
+      color:white;
+      text-decoration:none;
+      margin:8px 14px;
+      font-weight:bold;
+      display:inline-block;
+      transition:0.3s;
+    }
+
+    nav a:hover{
+      color:#00c2ff;
+    }
+
+    main{
+      max-width:1200px;
+      margin:auto;
+      padding:40px 20px 70px;
+    }
+
+    section{
+      margin-bottom:40px;
+    }
+
+    .section-title{
+      font-size:2rem;
+      color:#0d3b66;
+      margin-bottom:18px;
+      border-left:8px solid #00a8e8;
+      padding-left:14px;
+    }
+
+    .card{
+      background:white;
+      padding:24px;
+      border-radius:18px;
+      box-shadow:0 8px 24px rgba(16, 48, 84, 0.10);
+      margin-bottom:20px;
+    }
+
+    .intro-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+      gap:20px;
+    }
+
+    .mini-card{
+      background:linear-gradient(135deg, #ffffff, #f4f9ff);
+      border-left:6px solid #00a8e8;
+      padding:20px;
+      border-radius:16px;
+      box-shadow:0 6px 18px rgba(16,48,84,0.08);
+    }
+
+    .sports-featured{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+      gap:20px;
+    }
+
+    .sport-box{
+      background:white;
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:0 8px 24px rgba(16, 48, 84, 0.12);
+      transition:0.3s;
+    }
+
+    .sport-box:hover{
+      transform:translateY(-5px);
+    }
+
+    .sport-box img{
+      width:100%;
+      height:180px;
+      object-fit:cover;
+      display:block;
+    }
+
+    .sport-box .content{
+      padding:18px;
+    }
+
+    .sport-box h3{
+      color:#0d3b66;
+      margin-bottom:10px;
+    }
+
+    .catalogo{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+      gap:18px;
+    }
+
+    .catalogo .item{
+      background:white;
+      padding:18px;
+      border-radius:16px;
+      border-top:5px solid #00a8e8;
+      box-shadow:0 6px 18px rgba(16,48,84,0.09);
+    }
+
+    .catalogo .item h4{
+      color:#0d3b66;
+      margin-bottom:8px;
+    }
+
+    .video-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(320px,1fr));
+      gap:20px;
+    }
+
+    .video-box{
+      background:white;
+      border-radius:18px;
+      padding:18px;
+      box-shadow:0 8px 24px rgba(16, 48, 84, 0.10);
+    }
+
+    .video-box h3{
+      color:#0d3b66;
+      margin-bottom:12px;
+    }
+
+    .video-box iframe{
+      width:100%;
+      height:220px;
+      border:none;
+      border-radius:12px;
+      margin-bottom:12px;
+    }
+
+    .evento-especial{
+      background:linear-gradient(135deg,#ffffff,#f4f9ff);
+      border-left:6px solid #00a8e8;
+      padding:20px;
+      border-radius:16px;
+      box-shadow:0 6px 18px rgba(16,48,84,0.08);
+      margin-bottom:18px;
+    }
+
+    .evento-especial h3{
+      color:#0d3b66;
+      margin-bottom:10px;
+    }
+
+    ul{
+      padding-left:20px;
+    }
+
+    footer{
+      background:#061526;
+      color:white;
+      text-align:center;
+      padding:28px 20px;
+    }
+
+    @media (max-width:768px){
+      .hero h1{
+        font-size:2.2rem;
+      }
+
+      .section-title{
+        font-size:1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="inicio">
+    <div class="hero">
+      <h1>Deportes No Olímpicos</h1>
+      <p>
+        Una web dedicada a descubrir deportes de todo el mundo que destacan por su historia,
+        su cultura, su originalidad y su creciente popularidad, aunque no formen parte del
+        programa olímpico.
+      </p>
+      <p>
+        Aquí encontrarás historia, ejemplos, reglas básicas, competiciones, vídeos en español
+        y un gran catálogo con todos los deportes incluidos en el proyecto.
+      </p>
+      <a class="btn" href="#catalogo-completo">Ver catálogo completo</a>
+    </div>
+  </header>
+
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#destacados">Destacados</a>
+    <a href="#historia">Historia</a>
+    <a href="#reglas">Reglas</a>
+    <a href="#catalogo-completo">Todos los deportes</a>
+    <a href="#videos">Vídeos</a>
+    <a href="#eventos">Eventos</a>
+  </nav>
+
+  <main>
+
+    <section>
+      <h2 class="section-title">Introducción</h2>
+      <div class="card">
+        <p>
+          Los deportes no olímpicos forman una parte muy importante de la diversidad deportiva
+          mundial. Algunos tienen siglos de tradición, otros son modernos y han surgido gracias
+          a nuevas formas de entrenamiento, ocio o competición. Muchos de ellos poseen federaciones,
+          campeonatos internacionales y una comunidad de seguidores muy amplia.
+        </p>
+      </div>
+
+      <div class="intro-grid">
+        <div class="mini-card">
+          <h3>Variedad cultural</h3>
+          <p>Muchos deportes nacen en tradiciones locales y después se expanden a otros países.</p>
+        </div>
+        <div class="mini-card">
+          <h3>Innovación deportiva</h3>
+          <p>Algunos combinan varias disciplinas y crean formatos originales, dinámicos y modernos.</p>
+        </div>
+        <div class="mini-card">
+          <h3>Gran nivel competitivo</h3>
+          <p>Aunque no sean olímpicos, muchos tienen ligas, mundiales y torneos de alto nivel.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="destacados">
+      <h2 class="section-title">Deportes destacados</h2>
+      <div class="sports-featured">
+
+        <div class="sport-box">
+          <img src="https://images.unsplash.com/photo-1547347298-4074fc3086f0?auto=format&fit=crop&w=1200&q=80" alt="CrossFit">
+          <div class="content">
+            <h3>CrossFit</h3>
+            <p>
+              Sistema de entrenamiento de alta intensidad que mezcla fuerza, resistencia,
+              halterofilia, gimnasia y cardio. Se ha convertido en uno de los deportes
+              de entrenamiento más populares del siglo XXI.
+            </p>
+          </div>
+        </div>
+
+        <div class="sport-box">
+          <img src="https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=1200&q=80" alt="Pádel">
+          <div class="content">
+            <h3>Pádel</h3>
+            <p>
+              Deporte de raqueta muy extendido en España y América Latina. Se juega
+              por parejas y destaca por el uso de paredes, la rapidez del juego y su
+              carácter social.
+            </p>
+          </div>
+        </div>
+
+        <div class="sport-box">
+          <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1200&q=80" alt="Fútbol playa">
+          <div class="content">
+            <h3>Fútbol playa</h3>
+            <p>
+              Variante del fútbol tradicional que se practica sobre arena. Es más
+              espectacular por su ritmo rápido, sus remates acrobáticos y el gran
+              esfuerzo físico que exige.
+            </p>
+          </div>
+        </div>
+
+        <div class="sport-box">
+          <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=80" alt="Parkour">
+          <div class="content">
+            <h3>Parkour</h3>
+            <p>
+              Disciplina física nacida en Francia que consiste en desplazarse superando
+              obstáculos del entorno con saltos, escaladas y equilibrio. Requiere control,
+              agilidad y técnica.
+            </p>
+          </div>
+        </div>
+
+        <div class="sport-box">
+          <img src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=1200&q=80" alt="Dardos">
+          <div class="content">
+            <h3>Dardos</h3>
+            <p>
+              Deporte de precisión muy popular especialmente en el Reino Unido. Aunque
+              parece sencillo, exige concentración, cálculo y enorme regularidad.
+            </p>
+          </div>
+        </div>
+
+        <div class="sport-box">
+          <img src="https://images.unsplash.com/photo-1511884642898-4c92249e20b6?auto=format&fit=crop&w=1200&q=80" alt="Críquet">
+          <div class="content">
+            <h3>Críquet</h3>
+            <p>
+              Uno de los deportes más seguidos del mundo, especialmente en India, Australia,
+              Pakistán y Reino Unido. Combina estrategia, técnica de bateo y juego colectivo.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="historia">
+      <h2 class="section-title">Historia y evolución</h2>
+      <div class="card">
+        <p>
+          La historia de los deportes no olímpicos es tan amplia como la historia del deporte
+          mismo. Algunos nacieron como prácticas tradicionales, como el sumo, la pelota vasca
+          o el hurling. Otros se desarrollaron a partir de deportes ya existentes, como el
+          fútbol playa, el balonmano playa o el bike polo. También existen disciplinas recientes
+          surgidas de la cultura urbana o del entrenamiento moderno, como el parkour, el CrossFit
+          o el speedcubing.
+        </p>
+        <br>
+        <p>
+          Esta evolución demuestra que el deporte no deja de cambiar. Las nuevas generaciones
+          crean nuevas formas de competir, mientras que los deportes tradicionales siguen
+          conservando su valor cultural e histórico.
+        </p>
+      </div>
+    </section>
+
+    <section id="reglas">
+      <h2 class="section-title">Reglas y normativas</h2>
+      <div class="card">
+        <p>
+          Cada uno de estos deportes cuenta con reglas propias y, en muchos casos, con federaciones
+          que organizan competiciones oficiales. Algunas normas regulan la duración de los partidos,
+          el número de participantes, el material permitido, las dimensiones del terreno de juego
+          y el sistema de puntuación.
+        </p>
+        <br>
+        <ul>
+          <li><strong>Pádel:</strong> se juega por parejas y permite el uso de paredes.</li>
+          <li><strong>Dardos:</strong> gana quien llegue antes a una puntuación exacta establecida.</li>
+          <li><strong>Críquet:</strong> alterna turnos de bateo y lanzamiento entre dos equipos.</li>
+          <li><strong>Sumo:</strong> vence quien expulsa al rival del círculo o lo hace tocar el suelo.</li>
+          <li><strong>Speedcubing:</strong> gana quien resuelve el cubo en menos tiempo.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="catalogo-completo">
+      <h2 class="section-title">Catálogo completo</h2>
+      <div class="card">
+        <p>
+          En este apartado se resumen todos los deportes incluidos en el proyecto. Así la web
+          queda más completa y demuestra una investigación más amplia sobre la diversidad deportiva.
+        </p>
+      </div>
+
+      <div class="catalogo">
+        <div class="item"><h4>Globos</h4><p>Competiciones relacionadas con globos aerostáticos y pruebas de precisión, distancia o resistencia en vuelo.</p></div>
+        <div class="item"><h4>Speedcubing</h4><p>Resolución rápida del cubo de Rubik y otros rompecabezas en el menor tiempo posible.</p></div>
+        <div class="item"><h4>Fútbol playa</h4><p>Versión del fútbol jugada sobre arena, con ritmo alto y muchas acciones espectaculares.</p></div>
+        <div class="item"><h4>Stacking</h4><p>Deporte de habilidad que consiste en apilar y desapilar vasos a gran velocidad siguiendo secuencias concretas.</p></div>
+        <div class="item"><h4>Hurling</h4><p>Deporte tradicional irlandés muy rápido en el que se golpea una pelota con un palo llamado hurley.</p></div>
+        <div class="item"><h4>Frisbee</h4><p>Disciplina practicada con disco volador, con modalidades como ultimate frisbee o freestyle.</p></div>
+        <div class="item"><h4>CrossFit</h4><p>Entrenamiento competitivo que combina ejercicios funcionales, resistencia y fuerza.</p></div>
+        <div class="item"><h4>Ciclismo artístico</h4><p>Modalidad en bicicleta donde se realizan figuras técnicas y coreografías de gran precisión.</p></div>
+        <div class="item"><h4>Canoapolo</h4><p>Deporte acuático que mezcla kayak y pelota, enfrentando a dos equipos en el agua.</p></div>
+        <div class="item"><h4>Patinaje artístico</h4><p>Disciplina que combina técnica, equilibrio, saltos y expresión artística sobre patines.</p></div>
+        <div class="item"><h4>Patinaje de velocidad</h4><p>Carreras sobre patines donde gana quien completa el recorrido en menos tiempo.</p></div>
+        <div class="item"><h4>Ajedrez</h4><p>Juego-deporte de estrategia mental disputado entre dos jugadores sobre un tablero.</p></div>
+        <div class="item"><h4>Kárate</h4><p>Arte marcial japonés centrado en golpes, defensas y katas de gran precisión técnica.</p></div>
+        <div class="item"><h4>Bolos</h4><p>Juego de puntería en el que se derriban bolos mediante el lanzamiento de una bola.</p></div>
+        <div class="item"><h4>Pádel</h4><p>Deporte de raqueta por parejas que utiliza paredes y destaca por su dinamismo.</p></div>
+        <div class="item"><h4>Windsurf</h4><p>Deporte náutico en el que se navega con una tabla impulsada por una vela.</p></div>
+        <div class="item"><h4>Squash</h4><p>Deporte de raqueta jugado en pista cerrada golpeando la pelota contra la pared frontal.</p></div>
+        <div class="item"><h4>Billar</h4><p>Conjunto de modalidades de precisión jugadas sobre mesa con tacos y bolas.</p></div>
+        <div class="item"><h4>Balonmano playa</h4><p>Versión sobre arena del balonmano, más rápida y espectacular en sus lanzamientos.</p></div>
+        <div class="item"><h4>Baile deportivo</h4><p>Competición de baile en parejas o grupos donde se valoran técnica, ritmo y expresión.</p></div>
+        <div class="item"><h4>Quidditch muggle</h4><p>Deporte inspirado en la saga Harry Potter y adaptado al mundo real con reglas propias.</p></div>
+        <div class="item"><h4>Polo</h4><p>Deporte ecuestre en el que dos equipos intentan marcar golpeando una bola con mazos.</p></div>
+        <div class="item"><h4>Pelota vasca</h4><p>Deporte tradicional del País Vasco con varias modalidades y gran importancia cultural.</p></div>
+        <div class="item"><h4>Sumo</h4><p>Lucha tradicional japonesa donde el objetivo es sacar al rival del círculo o derribarlo.</p></div>
+        <div class="item"><h4>Indiaca</h4><p>Juego similar al voleibol pero utilizando una indiaca, un objeto con plumas golpeado con la mano.</p></div>
+        <div class="item"><h4>Juego de la soga</h4><p>Competición de fuerza por equipos en la que ambos lados tiran de una cuerda.</p></div>
+        <div class="item"><h4>Korfball</h4><p>Deporte mixto similar al baloncesto en el que hombres y mujeres compiten juntos.</p></div>
+        <div class="item"><h4>Wushu</h4><p>Conjunto de artes marciales chinas que incluye combates y exhibiciones técnicas.</p></div>
+        <div class="item"><h4>Kin-ball</h4><p>Deporte colectivo con una pelota gigante donde participan tres equipos a la vez.</p></div>
+        <div class="item"><h4>Petanca</h4><p>Deporte de precisión en el que se lanzan bolas metálicas para acercarse al boliche.</p></div>
+        <div class="item"><h4>Dardos</h4><p>Disciplina de precisión que consiste en lanzar dardos a una diana circular.</p></div>
+        <div class="item"><h4>Futgolf</h4><p>Combinación de fútbol y golf en la que se golpea un balón con el pie hacia hoyos.</p></div>
+        <div class="item"><h4>Fútbol billar</h4><p>Variante recreativa que mezcla reglas y estética del billar con el uso de balones.</p></div>
+        <div class="item"><h4>Radball</h4><p>Deporte en bicicleta donde los jugadores golpean un balón usando las ruedas.</p></div>
+        <div class="item"><h4>Bike polo</h4><p>Versión del polo jugada en bicicleta, con mazos y pelota en una pista cerrada.</p></div>
+        <div class="item"><h4>Fistball</h4><p>Deporte de equipo parecido al voleibol, pero golpeando la pelota con el puño o el brazo.</p></div>
+        <div class="item"><h4>Raquetbol</h4><p>Deporte de raqueta y pared muy veloz, parecido al squash pero con reglas distintas.</p></div>
+        <div class="item"><h4>Ju-jitsu</h4><p>Arte marcial japonés centrado en luxaciones, proyecciones y control del adversario.</p></div>
+        <div class="item"><h4>Parkour</h4><p>Disciplina urbana basada en moverse de forma eficiente superando obstáculos.</p></div>
+        <div class="item"><h4>Lacrosse</h4><p>Deporte de equipo popular en Norteamérica que utiliza palos con red y una pelota.</p></div>
+        <div class="item"><h4>Muay Thai</h4><p>Arte marcial tailandés conocido por el uso de puños, codos, rodillas y piernas.</p></div>
+        <div class="item"><h4>Orientación</h4><p>Deporte en la naturaleza en el que se deben encontrar puntos usando mapa y brújula.</p></div>
+        <div class="item"><h4>Aikido</h4><p>Arte marcial japonés centrado en la defensa, el equilibrio y el control del rival.</p></div>
+        <div class="item"><h4>Kickboxing</h4><p>Deporte de combate que combina golpes de puño y patadas en un reglamento deportivo.</p></div>
+        <div class="item"><h4>Buceo (underwater sports)</h4><p>Conjunto de deportes subacuáticos que incluyen velocidad, habilidad y pruebas técnicas.</p></div>
+        <div class="item"><h4>Críquet</h4><p>Deporte de bate y pelota muy seguido en Asia y países de tradición británica.</p></div>
+        <div class="item"><h4>Ringol</h4><p>Deporte colectivo menos conocido que combina lanzamiento, coordinación y juego en equipo.</p></div>
+        <div class="item"><h4>Fútbol gaélico</h4><p>Deporte irlandés que mezcla elementos del fútbol y del rugby con gran intensidad física.</p></div>
+      </div>
+    </section>
+
+    <section id="videos">
+      <h2 class="section-title">Vídeos en español</h2>
+
+      <div class="video-grid">
+        <div class="video-box">
+          <h3>Pádel</h3>
+          <iframe src="https://www.youtube.com/embed/3w4B497htI0" title="Resumen Madrid Premier Padel P1 2025" allowfullscreen></iframe>
+          <p>
+            Vídeo de Premier Padel, ideal para ver jugadas,
+            ambiente de competición y nivel profesional.
+          </p>
+        </div>
+
+        <div class="video-box">
+          <h3>CrossFit</h3>
+          <iframe src="https://www.youtube.com/embed/_T9J4jwoEFA" title="CrossFit Games en español" allowfullscreen></iframe>
+          <p>
+            Retransmisión de los CrossFit Games, donde se puede apreciar
+            la intensidad, técnica y esfuerzo de los atletas.
+          </p>
+        </div>
+
+        <div class="video-box">
+          <h3>Speedcubing</h3>
+          <iframe src="https://www.youtube.com/embed/1ExAlz8g2pc" title="Campeonato de España de Cubo Rubik en Pamplona" allowfullscreen></iframe>
+          <p>
+            Vídeo sobre un campeonato de cubo de Rubik, perfecto para mostrar
+            la rapidez y la concentración del speedcubing.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="eventos">
+      <h2 class="section-title">Calendario de torneos y competiciones importantes</h2>
+
+      <div class="card">
+        <p>
+          Muchos deportes no olímpicos cuentan con campeonatos de gran nivel internacional.
+          Aquí aparecen varios ejemplos con sus fechas y lugares de celebración.
+        </p>
+      </div>
+
+      <div class="evento-especial">
+        <h3>Ooredoo Qatar Major 2026 - Premier Padel</h3>
+        <p><strong>Deporte:</strong> Pádel</p>
+        <p><strong>Fecha:</strong> del 11 al 19 de abril de 2026</p>
+        <p><strong>Lugar:</strong> Khalifa International Complex, Doha, Qatar</p>
+        <p>
+          Es una de las pruebas más importantes del circuito Premier Padel y reúne a algunas
+          de las mejores parejas del mundo.
+        </p>
+      </div>
+
+      <div class="evento-especial">
+        <h3>CrossFit Games 2026</h3>
+        <p><strong>Deporte:</strong> CrossFit</p>
+        <p><strong>Fecha:</strong> del 24 al 26 de julio de 2026</p>
+        <p><strong>Lugar:</strong> SAP Center, San José, California, Estados Unidos</p>
+        <p>
+          Es la competición más importante del mundo de CrossFit y en ella participan algunos
+          de los atletas más completos del planeta.
+        </p>
+      </div>
+
+      <div class="evento-especial">
+        <h3>Torrelodones Open 2026</h3>
+        <p><strong>Deporte:</strong> Speedcubing</p>
+        <p><strong>Fecha:</strong> 21 de febrero de 2026</p>
+        <p><strong>Lugar:</strong> Centro Comercial Espacio Torrelodones, Torrelodones, Madrid, España</p>
+        <p>
+          Competición oficial de speedcubing en España donde los participantes compiten
+          resolviendo cubos de Rubik en el menor tiempo posible.
+        </p>
+      </div>
+
+      <div class="evento-especial">
+        <h3>World Lacrosse Women’s Championship 2026</h3>
+        <p><strong>Deporte:</strong> Lacrosse</p>
+        <p><strong>Fecha:</strong> del 24 de julio al 2 de agosto de 2026</p>
+        <p><strong>Lugar:</strong> Oi Stadium y Prince Chichibu Memorial Stadium, Tokio, Japón</p>
+        <p>
+          Campeonato internacional de lacrosse femenino con selecciones nacionales
+          de gran nivel y gran importancia para este deporte.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Proyecto TIC · Deportes No Olímpicos · Página web educativa</p>
+  </footer>
+
+</body>
+</html>
